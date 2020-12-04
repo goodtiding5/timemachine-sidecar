@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+
+  sidecar:
+    build:
+      context: ../
+    image: solutionsoft/timemachine-sidecar:latest
+    environment:
+      - TM_LICHOST=45.32.134.232
+      - TM_LICPORT=57777
+      - TM_LICPASS=QWERTY
+    volumes:
+      - "./ssstm:/opt/ssstm:z"
+    ports:
+      - 127.0.0.1:7800:7800
+
+  java0:
+    image: openjdk:8u272-jre-slim
+    depends_on:
+      - sidecar
+    environment:
+      #SSS_TM_DEBUG: "enabled"
+      TM_SERVER_INFO: "sidecar:5777"
+    user: www-data
+    working_dir: /usr/src/myapp
+    volumes:
+      - "./ssstm:/opt/ssstm:z"
+      - "./ssstm/etc/ld.so.preload:/etc/ld.so.preload:ro"
+      - "./app:/usr/src/myapp"
+    ports:
+      - 127.0.0.1:8080:8080
+    command: bash -c "java -jar virtualclock-0.0.2-SNAPSHOT.jar"
+    
+  java1:
+    image: openjdk:8u272-jre-slim
+    depends_on:
+      - sidecar
+    environment:
+      #SSS_TM_DEBUG: "enabled"
+      TM_SERVER_INFO: "sidecar:5777"
+    user: www-data
+    working_dir: /usr/src/myapp
+    volumes:
+      - "./ssstm:/opt/ssstm:z"
+      - "./ssstm/etc/ld.so.preload:/etc/ld.so.preload:ro"
+      - "./app:/usr/src/myapp"
+    ports:
+      - 127.0.0.1:8081:8080
+    command: bash -c "java -jar virtualclock-0.0.2-SNAPSHOT.jar"
+    
