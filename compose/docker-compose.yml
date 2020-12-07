@@ -7,7 +7,7 @@ services:
       context: ../
     image: solutionsoft/timemachine-sidecar:latest
     environment:
-      - TM_LICHOST=45.32.134.232
+      - TM_LICHOST=192.168.20.121
       - TM_LICPORT=57777
       - TM_LICPASS=QWERTY
     volumes:
