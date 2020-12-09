@@ -59,7 +59,7 @@ function sanitize() {
 }
 
 [ -f /opt/solutionsoft/timemachine/licserverhost ] || setup_tmfl
-[ -d /.tm_is_ready ] || populate "/opt/ssstm"
+[ -f /.tm_is_ready ] || populate "/opt/ssstm"
 [ -f /etc/sudoers.d/99-default-user ] && sanitize
 
 echo "Sidecar for kubernetes is ready!"
