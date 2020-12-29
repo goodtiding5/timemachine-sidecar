@@ -48,10 +48,11 @@ services:
     command: bash -c "java -jar virtualclock-0.0.2-SNAPSHOT.jar"
     
   mssql:
-    image: mcr.microsoft.com/mssql/server:2017-CU21-ubuntu-16.04
+    image: mcr.microsoft.com/mssql/server:2019-CU8-ubuntu-16.04
     depends_on:
       - sidecar
     environment:
+      SSS_TM_DEBUG: "enabled"
       TM_SERVER_INFO: "sidecar:5777"
       ACCEPT_EULA: "y"
       SA_PASSWORD: "gY9pG0aC7xW2wT6p"
