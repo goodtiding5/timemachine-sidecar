@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -euo pipefail
-set -x
 
 TM_LICHOST=${TM_LICHOST:-127.0.0.1}
 TM_LICPORT=${TM_LICPORT:-57777}

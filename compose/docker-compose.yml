@@ -7,9 +7,9 @@ services:
       context: ../
     image: solutionsoft/timemachine-sidecar:latest
     environment:
-      - TM_LICHOST=192.168.20.121
-      - TM_LICPORT=57777
-      - TM_LICPASS=QWERTY
+      - TM_LICHOST=$DEMO_TM_LICHOST
+      - TM_LICPORT=$DEMO_TM_LICPORT
+      - TM_LICPASS=$DEMO_TM_LICPASS
     volumes:
       - "./ssstm:/opt/ssstm:z"
     ports:
@@ -20,7 +20,6 @@ services:
     depends_on:
       - sidecar
     environment:
-      #SSS_TM_DEBUG: "enabled"
       TM_SERVER_INFO: "sidecar:5777"
     user: www-data
     working_dir: /usr/src/myapp
@@ -37,8 +36,7 @@ services:
     depends_on:
       - sidecar
     environment:
-      #SSS_TM_DEBUG: "enabled"
-      TM_SERVER_INFO: "sidecar:5777"
+      - TM_SERVER_INFO=sidecar:5777
     user: www-data
     working_dir: /usr/src/myapp
     volumes:
@@ -49,3 +47,17 @@ services:
       - 127.0.0.1:8081:8080
     command: bash -c "java -jar virtualclock-0.0.2-SNAPSHOT.jar"
     
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU8-ubuntu-16.04
+    depends_on:
+      - sidecar
+    environment:
+      SSS_TM_DEBUG: "enabled"
+      TM_SERVER_INFO: "sidecar:5777"
+      ACCEPT_EULA: "y"
+      SA_PASSWORD: "gY9pG0aC7xW2wT6p"
+      MSSQL_COLLATION: "Latin1_General_CI_AS"
+    volumes:
+      - "./ssstm:/opt/ssstm:z"
+      - "./ssstm/etc/ld.so.preload:/etc/ld.so.preload:ro"
+      - "./mssql:/var/opt/mssql:z"
