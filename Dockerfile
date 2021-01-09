@@ -7,7 +7,7 @@ ENV TM_LICHOST=172.0.0.1 \
 LABEL name="Solution-Soft/Time Machine Sidecar for Kubernetes" \
       vendor="SolutionSoft Systems, Inc" \
       version="18.03" \
-      release="3" \
+      release="7" \
       summary="Time Machine Sidecar for Kubernetes Image" \
       description="Time Machine creates virtual clocks for time shift testing of Applications" \
       url="https://solution-soft.com" \
@@ -16,19 +16,19 @@ LABEL name="Solution-Soft/Time Machine Sidecar for Kubernetes" \
 COPY help.1 /
 COPY licenses /licenses/
 
-ARG TINI_VERSION=v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-
 COPY dist /dist
 COPY entrypoint.sh /
 
-RUN chown root:root /tini && chmod +x /tini \
-&&  chown root:root /entrypoint.sh && chmod +x /entrypoint.sh \
+ARG TINI_VERSION=v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+
+RUN chown root:root /tini \
+&&  chmod +x /tini \
 &&  chown -R root:root /dist \
-&&  yum --disableplugin=subscription-manager -y install sudo iproute tzdata \
-&&  yum --disableplugin=subscription-manager clean all \
-&&  useradd -g 0 default \
-&&  echo "default	 ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/99-default-user
+&&  chmod u+s /dist/bin/tmdeploy \
+&&  chown root:root /entrypoint.sh \
+&&  chmod 0555 /entrypoint.sh \
+&&  useradd -g 0 default
 
 EXPOSE 7800
 
