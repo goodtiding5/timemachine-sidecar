@@ -52,7 +52,7 @@ services:
     depends_on:
       - sidecar
     environment:
-      SSS_TM_DEBUG: "enabled"
+      #SSS_TM_DEBUG: "enabled"
       TM_SERVER_INFO: "sidecar:5777"
       ACCEPT_EULA: "y"
       SA_PASSWORD: "gY9pG0aC7xW2wT6p"
