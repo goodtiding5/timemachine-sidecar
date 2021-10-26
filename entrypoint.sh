@@ -17,7 +17,7 @@ echo "Sidecar for kubernetes is ready!"
 if [ "$#" -gt 0 ]; then
     eval "exec $@"
 else 
-    exec /opt/ssstm/sbin/tmdaemon
+    exec /opt/ssstm/sbin/tmagent
 fi
 
 # Will not reach here 
