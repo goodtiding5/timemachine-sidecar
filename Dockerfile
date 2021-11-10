@@ -28,7 +28,10 @@ RUN chown root:root /tini \
 &&  chmod u+s /dist/bin/tmdeploy \
 &&  chown root:root /entrypoint.sh \
 &&  chmod 0555 /entrypoint.sh \
-&&  useradd -g 0 default
+&&  useradd -g 0 default \
+&&  mkdir -p /etc/ssstm /var/lib/ssstm \
+&&  chown default:0 /etc/ssstm /var/lib/ssstm \
+&&  chmod ug+w /etc/ssstm /var/lib/ssstm
 
 EXPOSE 5777 7800
 
