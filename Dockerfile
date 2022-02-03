@@ -7,7 +7,7 @@ ENV TM_LICHOST=172.0.0.1 \
 LABEL name="Solution-Soft/Time Machine Sidecar for Kubernetes" \
       vendor="SolutionSoft Systems, Inc" \
       version="18.03" \
-      release="13" \
+      release="30" \
       summary="Time Machine Sidecar for Kubernetes Image" \
       description="Time Machine creates virtual clocks for time shift testing of Applications" \
       url="https://solution-soft.com" \
@@ -29,9 +29,10 @@ RUN chown root:root /tini \
 &&  chown root:root /entrypoint.sh \
 &&  chmod 0555 /entrypoint.sh \
 &&  useradd -g 0 default \
-&&  mkdir -p /etc/ssstm /var/lib/ssstm \
-&&  chown default:0 /etc/ssstm /var/lib/ssstm \
-&&  chmod ug+w /etc/ssstm /var/lib/ssstm
+&&  mkdir -p /etc/ssstm \
+&&  chown default:0 /etc/ssstm \
+&&  chmod ug+w /etc/ssstm \
+&&  ln -sf /opt/ssstm/data /var/lib/ssstm
 
 EXPOSE 5777 7800
 
