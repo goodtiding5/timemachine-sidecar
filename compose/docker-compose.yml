@@ -12,6 +12,7 @@ services:
       - TM_LICPASS=$DEMO_TM_LICPASS
     volumes:
       - "./ssstm:/opt/ssstm:z"
+      - "./dbdata:/var/lib/ssstm:z"
     ports:
       - 127.0.0.1:7800:7800
 
