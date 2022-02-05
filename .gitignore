@@ -2,3 +2,4 @@
 .env
 ssstm/
 mssql/
+dbdata/
