@@ -10,6 +10,7 @@ FROM_DIR=${FROM_DIR:-/dist}
 INTO_DIR=${INTO_DIR:-/opt/ssstm}
 
 [ -f /dist/bin/tmdeploy ] && /dist/bin/tmdeploy
+[ -d /opt/ssstm/data ] || mkdir -p /opt/ssstm/data
 
 echo "Sidecar for kubernetes is ready!"
 
