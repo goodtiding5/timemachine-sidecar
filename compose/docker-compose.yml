@@ -10,10 +10,8 @@ services:
       - TM_LICHOST=$DEMO_TM_LICHOST
       - TM_LICPORT=$DEMO_TM_LICPORT
       - TM_LICPASS=$DEMO_TM_LICPASS
-      - SSS_TM_DEBUG=enabled
     volumes:
       - "./ssstm:/opt/ssstm:z"
-      - "./dbdata:/var/lib/ssstm:z"
     ports:
       - 127.0.0.1:7800:7800
 
@@ -39,8 +37,8 @@ services:
     depends_on:
       - sidecar
     environment:
-      - TM_SERVER_INFO=sidecar:5777
-      - TM_DOMAIN=nevada
+      TM_SERVER_INFO: "sidecar:5777"
+      TM_DOMAIN: "nevada"
     user: www-data
     working_dir: /usr/src/myapp
     volumes:
