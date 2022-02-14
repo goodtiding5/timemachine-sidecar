@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TAG=build-v18.03r35
+TAG=build-v18.03r36
 
 set -ex
 
