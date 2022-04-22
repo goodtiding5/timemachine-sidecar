@@ -11,6 +11,7 @@ INTO_DIR=${INTO_DIR:-/opt/ssstm}
 
 [ -f /dist/bin/tmdeploy ] && /dist/bin/tmdeploy
 [ -d /opt/ssstm/data ] || mkdir -p /opt/ssstm/data
+[ -d /opt/ssstm/log  ] || mkdir -p /opt/ssstm/log
 
 echo "Sidecar for kubernetes is ready!"
 
@@ -18,7 +19,7 @@ echo "Sidecar for kubernetes is ready!"
 if [ "$#" -gt 0 ]; then
     eval "exec $@"
 else 
-    exec /opt/ssstm/sbin/tmagent
+    exec /usr/sbin/tmagent
 fi
 
 # Will not reach here 
