@@ -7,7 +7,7 @@ ENV TM_LICHOST=172.0.0.1 \
 LABEL name="Solution-Soft/Time Machine Sidecar for Kubernetes" \
       vendor="SolutionSoft Systems, Inc" \
       version="18.03" \
-      release="55" \
+      release="58" \
       summary="Time Machine Sidecar for Kubernetes Image" \
       description="Time Machine creates virtual clocks for time shift testing of Applications" \
       url="https://solution-soft.com" \
@@ -19,12 +19,7 @@ COPY licenses /licenses/
 COPY dist /dist
 COPY entrypoint.sh /
 
-ARG TINI_VERSION=v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-
-RUN chown root:root /tini \
-&&  chmod +x /tini \
-&&  chown -R root:root /dist \
+RUN chown -R root:root /dist \
 &&  chmod u+s /dist/bin/tmdeploy \
 &&  chown root:root /entrypoint.sh \
 &&  chmod 0555 /entrypoint.sh \
@@ -44,4 +39,4 @@ HEALTHCHECK \
     --interval=5m \ 
     CMD ping -c 1 localhost || exit 1
 
-ENTRYPOINT ["/tini", "--", "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
