@@ -38,6 +38,6 @@ HEALTHCHECK \
     --start-period=5m \
     --interval=5m \
     --timeout=5s \
-    CMD curl -f http://127.0.0.1/tmapp/getstatus || exit 1
+    CMD curl -f http://127.0.0.1:7800/tmapp/getstatus || exit 1
 
 ENTRYPOINT ["/entrypoint.sh"]
