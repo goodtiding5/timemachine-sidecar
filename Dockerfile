@@ -7,7 +7,7 @@ ENV TM_LICHOST=172.0.0.1 \
 LABEL name="Solution-Soft/Time Machine Sidecar for Kubernetes" \
       vendor="SolutionSoft Systems, Inc" \
       version="18.03" \
-      release="58" \
+      release="59" \
       summary="Time Machine Sidecar for Kubernetes Image" \
       description="Time Machine creates virtual clocks for time shift testing of Applications" \
       url="https://solution-soft.com" \
@@ -36,7 +36,8 @@ STOPSIGNAL SIGTERM
 
 HEALTHCHECK \
     --start-period=5m \
-    --interval=5m \ 
-    CMD ping -c 1 localhost || exit 1
+    --interval=5m \
+    --timeout=5s \
+    CMD curl -f http://127.0.0.1/tmapp/getstatus || exit 1
 
 ENTRYPOINT ["/entrypoint.sh"]
