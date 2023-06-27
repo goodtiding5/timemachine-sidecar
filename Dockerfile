@@ -33,6 +33,10 @@ RUN chown root:root /tini \
 &&  chown default:0 /etc/ssstm /opt/ssstm \
 &&  chmod ug+w /etc/ssstm /opt/ssstm
 
+RUN cp /dist/sbin/tmagent /usr/sbin/tmagent \
+&&  chmod 0555 /usr/sbin/tmagent \
+&&  chown root:root /usr/sbin/tmagent
+
 EXPOSE 5777 7800
 
 USER default

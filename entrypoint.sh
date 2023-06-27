@@ -3,19 +3,17 @@
 # set -euo pipefail
 set -ex
 
-TM_LICHOST=${TM_LICHOST:-127.0.0.1}
-TM_LICPORT=${TM_LICPORT:-57777}
-TM_LICPASS=${TM_LICPASS:-docker}
+export TM_LICHOST=${TM_LICHOST:-127.0.0.1}
+export TM_LICPORT=${TM_LICPORT:-57777}
+export TM_LICPASS=${TM_LICPASS:-docker}
+export TM_DOMAIN=${TM_DOMAIN:-"$HOSTNAME"}
 
-TM_DOMAIN=${TM_DOMAIN:-"$HOSTNAME"}
-
-FROM_DIR=${FROM_DIR:-/dist}
-INTO_DIR=${INTO_DIR:-/opt/ssstm}
+export FROM_DIR=${FROM_DIR:-/dist}
+export INTO_DIR=${INTO_DIR:-/opt/ssstm}
 
 [ -d /opt/ssstm/lib ] || mkdir -p /opt/ssstm/lib
-[ -d /opt/ssstm/data ] || mkdir -p /opt/ssstm/data
 [ -d /opt/ssstm/log  ] || mkdir -p /opt/ssstm/log
-# [ -f /dist/bin/tmdeploy ] && /dist/bin/tmdeploy
+[ -f /dist/bin/tmdeploy ] && /dist/bin/tmdeploy
 
 echo "Sidecar for kubernetes is ready!"
 
