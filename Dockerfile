@@ -2,7 +2,8 @@ FROM registry.access.redhat.com/ubi8/ubi:latest
 
 ENV TM_LICHOST=172.0.0.1 \
     TM_LICPORT=57777 \
-    TM_LICPASS=docker
+    TM_LICPASS=docker \
+    TM_CONTAINER_EXT=false
 
 LABEL name="Solution-Soft/Time Machine Sidecar for Kubernetes" \
       vendor="SolutionSoft Systems, Inc" \
