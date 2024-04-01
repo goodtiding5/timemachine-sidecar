@@ -18,17 +18,12 @@ COPY help.1 /
 COPY licenses /licenses/
 
 COPY dist /dist
-COPY entrypoint.sh /
+COPY entrypoint.sh /usr/local/bin
 
-ARG TINI_VERSION=v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-
-RUN chown root:root /tini \
-&&  chmod +x /tini \
-&&  chown -R root:root /dist \
+RUN chown -R root:root /dist \
 &&  chmod ug+s /dist/bin/tmdeploy \
-&&  chown root:root /entrypoint.sh \
-&&  chmod 0555 /entrypoint.sh \
+&&  chown root:root /usr/local/bin/entrypoint.sh \
+&&  chmod 0555 /usr/local/bin/entrypoint.sh \
 &&  useradd -g 0 default \
 &&  mkdir -p /etc/ssstm /opt/ssstm \
 &&  chown default:0 /etc/ssstm /opt/ssstm \
@@ -50,4 +45,4 @@ HEALTHCHECK \
     --timeout=5s \
     CMD curl -f http://127.0.0.1:7800/tmapp/getstatus || exit 1
 
-ENTRYPOINT ["/tini", "--", "/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

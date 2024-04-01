@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TAG=build-v18.03r62
+TAG=${TAG:-"build-v18.03r62"}
 
 set -ex
 
