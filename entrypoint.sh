@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# set -euo pipefail
-set -ex
+set -euo pipefail
+# set -ex
 
 export TM_LICHOST=${TM_LICHOST:-127.0.0.1}
 export TM_LICPORT=${TM_LICPORT:-57777}
@@ -15,7 +15,7 @@ export INTO_DIR=${INTO_DIR:-/opt/ssstm}
 
 [ -d /opt/ssstm/lib ] || mkdir -p /opt/ssstm/lib
 [ -d /opt/ssstm/log  ] || mkdir -p /opt/ssstm/log
-[ -f /dist/bin/tmdeploy ] && /dist/bin/tmdeploy -d
+[ -f /dist/bin/tmdeploy ] && /dist/bin/tmdeploy
 
 echo "Sidecar for kubernetes is ready!"
 
