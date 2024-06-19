@@ -6,7 +6,7 @@ set -ex
 export TM_LICHOST=${TM_LICHOST:-127.0.0.1}
 export TM_LICPORT=${TM_LICPORT:-57777}
 export TM_LICPASS=${TM_LICPASS:-docker}
-export TM_DOMAIN=${TM_DOMAIN:-"$HOSTNAME"}
+export TM_DOMAIN=${TM_DOMAIN:-"localhost"}
 export TM_DBFILE=${TM_DBFILE:-""}
 export TM_CONTAINER_EXT=${TM_CONTAINER_EXT:-"false"}
 
