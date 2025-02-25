@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi:latest
+FROM redhat/ubi8:latest
 
 ENV TM_LICHOST=172.0.0.1 \
     TM_LICPORT=57777 \
@@ -8,7 +8,7 @@ ENV TM_LICHOST=172.0.0.1 \
 LABEL name="Solution-Soft/Time Machine Sidecar for Kubernetes" \
       vendor="SolutionSoft Systems, Inc" \
       version="18.03" \
-      release="59" \
+      release="67" \
       summary="Time Machine Sidecar for Kubernetes Image" \
       description="Time Machine creates virtual clocks for time shift testing of Applications" \
       url="https://solution-soft.com" \
@@ -45,7 +45,7 @@ USER default
 STOPSIGNAL SIGTERM
 
 HEALTHCHECK \
-    --start-period=5m \
+    --start-period=10s \
     --interval=5m \
     --timeout=5s \
     CMD curl -f http://127.0.0.1:7800/tmapp/getstatus || exit 1
