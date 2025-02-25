@@ -13,9 +13,7 @@ export TM_CONTAINER_EXT=${TM_CONTAINER_EXT:-"false"}
 export FROM_DIR=${FROM_DIR:-/dist}
 export INTO_DIR=${INTO_DIR:-/opt/ssstm}
 
-[ -d /opt/ssstm/lib ] || mkdir -p /opt/ssstm/lib
-[ -d /opt/ssstm/log  ] || mkdir -p /opt/ssstm/log
-[ -f /dist/bin/tmdeploy ] && /dist/bin/tmdeploy -d
+[ -f /dist/bin/tmdeploy ] && /dist/bin/tmdeploy
 
 echo "Sidecar for kubernetes is ready!"
 
