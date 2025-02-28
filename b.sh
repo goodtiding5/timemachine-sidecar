@@ -1,8 +1,8 @@
 #!/bin/sh
 
-#TAG="build-v18.03r73-mesh"
+TAG="build-v18.03r73-mesh"
 #TAG="build-v18.03r73"
-TAG="build-v18.03r72-mesh"
+#TAG="build-v18.03r72-mesh"
 #TAG="build-v18.03r72"
 #TAG="build-v18.03r71-mesh"
 #TAG="build-v18.03r71"
