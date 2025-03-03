@@ -2,10 +2,16 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "mesh" ]
-    
+    branches:
+      - MARK-v18.03r73-mesh
+
   pull_request:
-    branches: [ "mesh" ]
+    branches:
+      - MARK-v18.03r73-mesh
+
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 7 * * 3'
 
 jobs:
 
@@ -29,13 +35,10 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: Set up build timestamp
-      run: echo "timestamp=$(date +%Y%m%d)" >> $GITHUB_ENV
-
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
         push: true
         context: ./
         file: ./Dockerfile
-        tags: solutionsoft/timemachine-sidecar:latest-mesh, solutionsoft/timemachine-sidecar:build${{ env.timestamp }}-mesh
+        tags: solutionsoft/timemachine-sidecar:build-v18.03r73-mesh
