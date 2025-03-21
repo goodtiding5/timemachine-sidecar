@@ -32,10 +32,13 @@ jobs:
     - name: Set up build timestamp
       run: echo "timestamp=$(date +%Y%m%d)" >> $GITHUB_ENV
 
+    - name: Set up build release
+      run: echo "release=v18.03r74" >> $GITHUB_ENV
+
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
         push: true
         context: ./
         file: ./Dockerfile
-        tags: solutionsoft/timemachine-sidecar:latest-mesh, solutionsoft/timemachine-sidecar:build${{ env.timestamp }}-mesh
+        tags: solutionsoft/timemachine-sidecar:latest-mesh, solutionsoft/timemachine-sidecar:build${{ env.timestamp }}-mesh, solutionsoft/timemachine-sidecar:build-${{ env.release }}-mesh
