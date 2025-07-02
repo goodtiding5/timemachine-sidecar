@@ -1,4 +1,4 @@
-FROM redhat/ubi8:latest
+FROM redhat/ubi9:latest
 
 ENV TM_LICHOST=172.0.0.1 \
     TM_LICPORT=57777 \
