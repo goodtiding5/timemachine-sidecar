@@ -10,6 +10,14 @@ on:
   schedule:
     - cron: "0 10 * * 1" # every Monday
 
+  workflow_dispatch:
+    inputs:
+      # Define any required inputs here
+      # example_input:
+      #   description: 'A sample input'
+      #   required: true
+      #   type: string
+      
 jobs:
 
   build:
